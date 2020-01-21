@@ -3,14 +3,14 @@
     <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.0.0/stitch.js"></script>
     <script>
       // Initialize the App Client
-      const client = stitch.Stitch.initializeDefaultAppClient("<your-app-id>");
+      const client = stitch.Stitch.initializeDefaultAppClient("riply-nbjwd");
       // Get a MongoDB Service Client
       const mongodb = client.getServiceClient(
         stitch.RemoteMongoClient.factory,
         "mongodb-atlas"
       );
-      // Get a reference to the blog database
-      const db = mongodb.db("blog");
+      // Get a reference to the blog database stored in database constant db 
+      const db = mongodb.db("riply");
 
       function displayComments() {
         db.collection("comments")
@@ -24,7 +24,7 @@
 
       function displayCommentsOnLoad() {
         client.auth
-          .loginWithCredential(new stitch.AnonymousCredential())
+          .loginWithCredential(new stitch.AnonymousCredential()) //interacting with database using anonmous authentication
           .then(displayComments)
           .catch(console.error);
       }
